@@ -16,12 +16,13 @@ func Info(dataset []string, dp DataParser) {
 	for _, element := range dataset {
 		values := dp.Parse(element)
 		if values != nil {
-			log.Printf("Error parsing: %v, string: %s", values, element)
+			log.Printf("error parsing: %v, string: %s", values, element)
 			continue
 		}
 		actionInfo, err := dp.ActionInfo()
 		if err != nil {
-			log.Printf("Information error: %v, string: %s", err, element)
+			log.Printf("information error: %v, string: %s", err, element)
+			continue
 		}
 		fmt.Println(actionInfo)
 	}

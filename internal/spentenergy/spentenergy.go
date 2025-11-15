@@ -27,11 +27,11 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	if duration <= 0 {
 		return 0, errors.New("duration must be greater than zero")
 	}
-	MidSpeed := MeanSpeed(steps, height,duration)
-	DurationMiin := duration.Minutes()
-	SpentCalories := (weight * MidSpeed * DurationMiin) / minInH
-	SpentCaloriesWalk := SpentCalories * walkingCaloriesCoefficient
-	return SpentCaloriesWalk, nil
+	midSpeed := MeanSpeed(steps, height,duration)
+	durationMiin := duration.Minutes()
+	spentCalories := (weight * midSpeed * durationMiin) / minInH
+	spentCaloriesWalk := spentCalories * walkingCaloriesCoefficient
+	return spentCaloriesWalk, nil
 }
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
@@ -48,10 +48,10 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	if duration <= 0 {
 		return 0, errors.New("duration must be greater than zero")
 	}
-	AvgSpeed := MeanSpeed(steps,height,duration)
-	DurationMin := duration.Minutes()
-	SpentCaloriesRun := (weight * AvgSpeed * DurationMin) / minInH
-	return SpentCaloriesRun, nil
+	avgSpeed := MeanSpeed(steps,height,duration)
+	durationMin := duration.Minutes()
+	spentCaloriesRun := (weight * avgSpeed * durationMin) / minInH
+	return spentCaloriesRun, nil
 }
 
 func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
@@ -59,14 +59,14 @@ func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	if duration <= 0 {
 		return 0
 	}
-	NewDistance := Distance(steps, height)
-	AvgSpeed := NewDistance / duration.Hours()
-	return AvgSpeed
+	newDistance := Distance(steps, height)
+	avgSpeed := newDistance / duration.Hours()
+	return avgSpeed
 }
 
 func Distance(steps int, height float64) float64 {
 	// TODO: реализовать функцию
-	StrideLength := height * stepLengthCoefficient // длина шага
-	Dis := (float64(steps) * StrideLength) / mInKm
-	return Dis
+	strideLength := height * stepLengthCoefficient // длина шага
+	dis := (float64(steps) * strideLength) / mInKm
+	return dis
 }
